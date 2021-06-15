@@ -35,20 +35,19 @@ $(document).ready(function () {
                 pais.sort(compare);
 
                 contentHtml += "<tr>";
-                contentHtml += "<td>" + (i+1) +"<td>";
-                contentHtml += "<td>" + pais.Country +"<td>";
-                contentHtml += "<td>" + pais.NewConfirmed +"<td>";
-                contentHtml += "<td>" + pais.NewDeaths +"<td>";
-                contentHtml += "<td>" + pais.NewRecovered +"<td>";
-                contentHtml += "<td>" + pais.TotalConfirmed +"<td>";
-                contentHtml += "<td>" + pais.TotalDeaths +"<td>";
-                contentHtml += "<td>" + pais.TotalRecovered +"<td>";
+                contentHtml += "<td>" + (i+1) +"</td>";
+                contentHtml += "<td>" + pais.Country +"</td>";
+                contentHtml += "<td>" + pais.NewConfirmed +"</td>";
+                contentHtml += "<td>" + pais.NewDeaths +"</td>";
+                contentHtml += "<td>" + pais.NewRecovered +"</td>";
+                contentHtml += "<td>" + pais.TotalConfirmed +"</td>";
+                contentHtml += "<td>" + pais.TotalDeaths +"</td>";
+                contentHtml += "<td>" + pais.TotalRecovered +"</td>";
                 contentHtml += "<td><a class=\"btn btn-primary\" " +
                     "href=/detallePais/detallePais.html?name="+pais.Country+"&slug="+pais.Country.Slug+
                     "&countryCode="+pais.CountryCode+"&caseCovid=confirmed"+ ">Ver detalle</a>" +
                     "                        </td>";
-                contentHtml += "<tr>";
-
+                contentHtml += "</tr>";
 
             });
 
