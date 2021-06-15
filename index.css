@@ -1,0 +1,10 @@
+body {
+    background-color: #f0f0f0;
+}
+h1,
+h3 {
+    color: #353541;
+}
+.btn-primary {
+    width: 120px;
+}
