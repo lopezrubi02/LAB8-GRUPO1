@@ -117,5 +117,11 @@ $(document).ready(function () {
 
 function formatDate(date) {
     var fecha = date.slice(0, 10);
+    //2021-06-14
+    var anio = fecha.slice(0,4);
+    var mes = fecha.slice(5,7);
+    var dia = fecha.slice(8,11);
+    fecha = dia + "-" + mes + "-" + anio;
+    console.log(fecha);
     return fecha;
 }
