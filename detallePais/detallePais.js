@@ -1,4 +1,3 @@
-
 const urlParams = new URLSearchParams(window.location.search);
 //const nameCountry = urlParams.get('name');
 //const countryCode = urlParams.get('countryCode');
@@ -36,12 +35,17 @@ $(document).ready(function () {
 
 function seleccionarCasos() {
     //TODO
-    //const caseCovid = $("#caseCovid").val();
     console.log("Parámetro obtenido");
     console.log($("#caseCovid").val());
-    var caseCovid = $("#caseCovid").val();
-    $('#redirect-grafico').attr("href","../grafico/graficoEvolutivo.html?name=" + nameCountry + "&slug=" +
+    const caseCovid = $("#caseCovid").val();
+    $('#redirect-grafico').attr("href", "../grafico/graficoEvolutivo.html?name=" + nameCountry + "&slug=" +
         slug + "&countryCode=" + countryCode + "&caseCovid=" + caseCovid);
+
+    $("select").change(obtenerDataPais());
+
+    //obtenerDataPais();
+
+
 }
 
 function obtenerDataPais() {
@@ -50,6 +54,8 @@ function obtenerDataPais() {
         datatype: "json",
         url: "https://api.covid19api.com/total/dayone/country/" + slug + "/status/" + caseCovid
     }).done(function (data) {
+        console.log("lo que manda en el get");
+        console.log(caseCovid);
         const listacasos = data;
         var contentHtml = "";
 
