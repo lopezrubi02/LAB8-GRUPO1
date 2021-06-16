@@ -3,12 +3,7 @@ const nameCountry = urlParams.get('name');
 const countryCode = urlParams.get('countryCode');
 const slug = urlParams.get('slug');
 const caseCovid = urlParams.get('caseCovid');
-/*
-const nameCountry = "Peru";
-const countryCode = "PE";
-const slug = "peru";
-const caseCovid = "confirmed";
-*/
+
 $(document).ready(function () {
 
     $("#titulo").html('Resumen del país ' + nameCountry);
@@ -31,36 +26,32 @@ $(document).ready(function () {
     $('#redirect-grafico').attr("href","../grafico/graficoEvolutivo.html?name=" + nameCountry + "&slug=" +
         slug + "&countryCode=" + countryCode + "&caseCovid=" + caseCovid);
     obtenerDataPais();
+    $("#caseCovid").change(
+        function (){
+            obtenerDataPais();
+        }
+    );
 });
 
 function seleccionarCasos() {
-    //TODO
     console.log("Parámetro obtenido");
     console.log($("#caseCovid").val());
     const caseCovid = $("#caseCovid").val();
     $('#redirect-grafico').attr("href", "../grafico/graficoEvolutivo.html?name=" + nameCountry + "&slug=" +
         slug + "&countryCode=" + countryCode + "&caseCovid=" + caseCovid);
-
-    $("select").change(obtenerDataPais());
-
-    //obtenerDataPais();
-
-
 }
 
 function obtenerDataPais() {
+    const caseCovid = $("#caseCovid").val();
     $.ajax({
         method: "GET",
         datatype: "json",
         url: "https://api.covid19api.com/total/dayone/country/" + slug + "/status/" + caseCovid
     }).done(function (data) {
-        console.log("lo que manda en el get");
-        console.log(caseCovid);
         const listacasos = data;
         var contentHtml = "";
 
         $.each(listacasos, function( index, value ) {
-
             contentHtml += "<tr>";
             contentHtml += "<td>" + formatDate(value.Date) +"</td>";
             contentHtml += "<td>" + value.Cases +"</td>";
@@ -68,8 +59,7 @@ function obtenerDataPais() {
 
         });
 
-        $("#body-paises").append(contentHtml);
-
+        $("#body-paises").html(contentHtml);
     }).fail(function (err) {
         console.log(err);
         alert("ocurrió un error al cargar la página");
