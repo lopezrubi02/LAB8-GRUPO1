@@ -1,14 +1,14 @@
 const urlParams = new URLSearchParams(window.location.search);
-//const nameCountry = urlParams.get('name');
-//const countryCode = urlParams.get('countryCode');
-//const slug = urlParams.get('slug');
-//const caseCovid = urlParams.get('caseCovid');
-
+const nameCountry = urlParams.get('name');
+const countryCode = urlParams.get('countryCode');
+const slug = urlParams.get('slug');
+const caseCovid = urlParams.get('caseCovid');
+/*
 const nameCountry = "Peru";
 const countryCode = "PE";
 const slug = "peru";
 const caseCovid = "confirmed";
-
+*/
 $(document).ready(function () {
 
     $("#titulo").html('Resumen del país ' + nameCountry);

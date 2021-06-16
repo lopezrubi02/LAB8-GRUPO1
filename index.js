@@ -59,8 +59,8 @@ function obtenerListaPaises() {
             contentHtml += "<td>" + pais.NewDeaths +"</td>";
             contentHtml += "<td>" + pais.NewRecovered +"</td>";
             contentHtml += "<td><a class=\"btn btn-primary\" " +
-                "href=/detallePais/detallePais.html?name="+pais.Country+"&slug="+pais.Country.Slug+
-                "&countryCode="+pais.CountryCode+"&caseCovid=confirmed"+ ">Ver detalle</a>" +
+                "href=\"detallePais/detallePais.html?name=" + pais.Country + "&slug=" + pais.Slug +
+                "&countryCode=" + pais.CountryCode + "&caseCovid=confirmed\"" + ">Ver detalle</a>" +
                 "                        </td>";
             contentHtml += "</tr>";
         });
