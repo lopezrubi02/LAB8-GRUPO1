@@ -1,9 +1,49 @@
 
+
+
+
 $(document).ready(function () {
     const urlParams = new URLSearchParams(window.location.search);
-    const name = urlParams.get('name');
+    const nameCountry = urlParams.get('name');
+    const countryCode = urlParams.get('countryCode');
+    const slug = urlParams.get('slug');
+    const caseCovid = urlParams.get('caseCovid');
     //TODO
     var url = "";
+    $.ajax({
+        method: "GET",
+        datatype: "json",
+        url: "https://api.covid19api.com/total/dayone/country/" + slug + "/status/" + caseCovid
+    }).done(function (data) {
+        console.log("lo que manda en el get");
+        console.log(caseCovid);
+        const listacasos = data;
+
+        var url = {};
+        var d  = [];
+
+        $.each(listacasos, function( index, value ) {
+            d.push({
+                "date"    : formatDate(value.Date),
+                "close"  : value.Cases,
+            });
+        });
+
+        url.d = d;
+        console.log(JSON.stringify(url));
+        $("#res").text(JSON.stringify(url));
+
+        //-----------------------------------
+
+        //$("#body-paises").append(contentHtml);
+
+    }).fail(function (err) {
+        console.log(err);
+        alert("ocurrió un error al cargar la página");
+    });
+    $('#redirect-detalle').attr("href", "../detallePais/detallePais.html?name=" + nameCountry + "&slug=" +
+        slug + "&countryCode=" + countryCode + "&caseCovid=" + caseCovid);
+
 
 
     // set the dimensions and margins of the graph
@@ -69,5 +109,9 @@ $(document).ready(function () {
 });
 
 function formatDate(date) {
-    //TODO
+    var fecha = date.slice(0, 10);
+    fecha = fecha.replace("-", "/");
+    fecha = fecha.replace("-", "/");
+    return fecha;
+    //TODO-hecho
 }
